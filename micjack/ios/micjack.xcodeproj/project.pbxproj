@@ -12,8 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3BFEF07B1472A110F6DAC7BB /* libPods-micjack-micjackTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0CB9988FA99E8DAB927BD /* libPods-micjack-micjackTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A1F808DCB6897282CA73D444 /* libPods-micjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A8BEA3DFD3611163DE5971 /* libPods-micjack.a */; };
+		B7099ED0268CFAB9006947F3 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7099ECF268CFAB9006947F3 /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +39,10 @@
 		71DF58095F957278C4D0CBB1 /* Pods-micjack-micjackTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-micjack-micjackTests.debug.xcconfig"; path = "Target Support Files/Pods-micjack-micjackTests/Pods-micjack-micjackTests.debug.xcconfig"; sourceTree = "<group>"; };
 		74A8BEA3DFD3611163DE5971 /* libPods-micjack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-micjack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7621A7051C664C6B8259EB15 /* Pods-micjack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-micjack.debug.xcconfig"; path = "Target Support Files/Pods-micjack/Pods-micjack.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = micjack/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84BE275DA83DF1C99C59727E /* Pods-micjack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-micjack.release.xcconfig"; path = "Target Support Files/Pods-micjack/Pods-micjack.release.xcconfig"; sourceTree = "<group>"; };
 		8B79CCC699A6E83BB930FE37 /* Pods-micjack-micjackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-micjack-micjackTests.release.xcconfig"; path = "Target Support Files/Pods-micjack-micjackTests/Pods-micjack-micjackTests.release.xcconfig"; sourceTree = "<group>"; };
 		A5C0CB9988FA99E8DAB927BD /* libPods-micjack-micjackTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-micjack-micjackTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7099ECF268CFAB9006947F3 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = micjack/BootSplash.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -87,10 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				B7099ECF268CFAB9006947F3 /* BootSplash.storyboard */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = micjack;
@@ -145,7 +145,6 @@
 				71DF58095F957278C4D0CBB1 /* Pods-micjack-micjackTests.debug.xcconfig */,
 				8B79CCC699A6E83BB930FE37 /* Pods-micjack-micjackTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -243,8 +242,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				B7099ED0268CFAB9006947F3 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
