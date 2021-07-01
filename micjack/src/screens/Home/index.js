@@ -11,7 +11,7 @@ import {useQuery} from 'react-query';
 import {getSongs} from '../../helpers/getSongs';
 import ListElement from './ListElement';
 
-export default function Home() {
+export default function Home({navigation, route}) {
   const {isLoading, error, data, isFetching} = useQuery('songs', async () => {
     try {
       const response = await getSongs();
@@ -36,7 +36,9 @@ export default function Home() {
         ) : (
           <FlatList
             keyExtractor={item => item.artistId + String(Math.random() * 26)}
-            renderItem={({item, index}) => <ListElement data={item} />}
+            renderItem={({item, index}) => (
+              <ListElement navigation={navigation} data={item} />
+            )}
             data={data}
           />
         )}

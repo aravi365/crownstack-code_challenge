@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {millisToMinutes} from '../../helpers/millisToMinutes';
 export default function ListElement(props) {
-  console.log('cjeckprop', props.data);
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate('Details', {data: props.data})}
+      style={styles.container}>
       <Image
         source={{uri: props.data.artworkUrl60}}
         style={styles.avatarImage}
@@ -57,7 +58,7 @@ export default function ListElement(props) {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
