@@ -12,19 +12,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Navigator from './navigation/Navigator';
 import RNBootSplash from 'react-native-bootsplash';
+import {QueryClient, QueryClientProvider} from 'react-query';
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <NavigationContainer
-        onReady={() =>
-          setTimeout(() => {
-            RNBootSplash.hide({fade: true});
-          }, 2000)
-        }>
-        <StatusBar barStyle={'light-content'} />
-        <Navigator />
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer
+          onReady={() =>
+            setTimeout(() => {
+              RNBootSplash.hide({fade: true});
+            }, 2000)
+          }>
+          <StatusBar barStyle={'light-content'} />
+          <Navigator />
+        </NavigationContainer>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 };
