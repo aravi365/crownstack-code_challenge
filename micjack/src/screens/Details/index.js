@@ -17,20 +17,11 @@ import {formatDate} from '../../helpers/formatDate';
 import {images} from '../../../assets';
 export default function Details({navigation, route}) {
   const [isPlaying, setPlaying] = React.useState(false);
-  const [isPaused, setPaused] = React.useState(false);
-  const [isFinished, setFinished] = React.useState(false);
 
   const {data} = route.params;
   function loadPreview() {
     try {
       SoundPlayer.loadUrl(data.previewUrl);
-    } catch (e) {
-      console.log('cannot play the sound file', e);
-    }
-  }
-  function playPreview() {
-    try {
-      SoundPlayer.play();
     } catch (e) {
       Alert.alert(
         'Unable to load preview',
@@ -43,7 +34,14 @@ export default function Details({navigation, route}) {
           },
         ],
       );
-      console.log('cannot play the sound file', e);
+      //   console.log('cannot play the sound file', e);
+    }
+  }
+  function playPreview() {
+    try {
+      SoundPlayer.play();
+    } catch (e) {
+      //   console.log('cannot play the sound file', e);
     }
     setPlaying(true);
   }
@@ -56,38 +54,28 @@ export default function Details({navigation, route}) {
     const _onFinishedPlayingSubscription = SoundPlayer.addEventListener(
       'FinishedPlaying',
       ({success}) => {
-        console.log('finished playing', success);
+        // console.log('finished playing', success);
         setPlaying(false);
-        // setFinished(true);
-        // setPaused(false);
-        // if (isPlaying) {
-        //   SoundPlayer.seek(0);
-        //   setPlaying(false);
-        //   setFinished(true);
-        //   setPaused(false);
-        // }
-        // SoundPlayer.stop();
-
         SoundPlayer.seek(0);
       },
     );
     const _onFinishedLoadingSubscription = SoundPlayer.addEventListener(
       'FinishedLoading',
       ({success}) => {
-        console.log('finished loading', success);
+        // console.log('finished loading', success);
         // setPlaying(true);
       },
     );
     const _onFinishedLoadingFileSubscription = SoundPlayer.addEventListener(
       'FinishedLoadingFile',
       ({success, name, type}) => {
-        console.log('finished loading file', success, name, type);
+        // console.log('finished loading file', success, name, type);
       },
     );
     const _onFinishedLoadingURLSubscription = SoundPlayer.addEventListener(
       'FinishedLoadingURL',
       ({success, url}) => {
-        console.log('finished loading url', success, url);
+        // console.log('finished loading url', success, url);
       },
     );
     loadPreview();
@@ -138,23 +126,13 @@ export default function Details({navigation, route}) {
             {data.artistName}
           </Text>
           {data.trackExplicitness === 'explicit' ? (
-            <View
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 12.5,
-                backgroundColor: '#495052',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginLeft: 10,
-                marginTop: 5,
-              }}>
+            <View style={styles.explicitWrapper}>
               <Text style={{color: '#fff'}}>E</Text>
             </View>
           ) : null}
         </View>
 
-        <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <View style={styles.playerWrap}>
           <TouchableOpacity
             style={{alignSelf: 'center'}}
             onPress={() => (!isPlaying ? playPreview() : pausePreview())}>
@@ -167,16 +145,7 @@ export default function Details({navigation, route}) {
             {isPlaying ? 'Playing Preview...' : 'Play Preview'}
           </Text>
         </View>
-        <View
-          style={{
-            borderWidth: 0.5,
-            padding: 10,
-            marginTop: 10,
-            borderRadius: 5,
-            borderColor: '#495052',
-            width: 300,
-            backgroundColor: '#fff',
-          }}>
+        <View style={styles.detailWrap}>
           <Text style={styles.boxTextTitle}>
             Genre:
             <Text style={styles.boxTextBody}>
@@ -215,20 +184,9 @@ export default function Details({navigation, route}) {
         {data.trackViewUrl ? (
           <TouchableOpacity
             onPress={() => handleLinkOpen(data.trackViewUrl)}
-            style={{
-              borderRadius: 5,
-              borderWidth: 1,
-              marginTop: 10,
-              padding: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+            style={styles.viewAlbumButton}>
             <Text>View Album on</Text>
-            <Image
-              style={{width: 20, height: 20, marginHorizontal: 5}}
-              source={images.apple}
-            />
+            <Image style={styles.apple} source={images.apple} />
             <Text>Music</Text>
           </TouchableOpacity>
         ) : null}
@@ -263,7 +221,6 @@ const styles = StyleSheet.create({
   },
   artistName: {
     fontSize: 18,
-    color: '#fff',
     fontWeight: 'bold',
     lineHeight: 24,
     marginTop: 5,
@@ -290,4 +247,34 @@ const styles = StyleSheet.create({
     color: '#495052',
     lineHeight: 28,
   },
+  explicitWrapper: {
+    width: 25,
+    height: 25,
+    borderRadius: 12.5,
+    backgroundColor: '#495052',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 10,
+    marginTop: 5,
+  },
+  viewAlbumButton: {
+    borderRadius: 5,
+    borderWidth: 1,
+    marginTop: 10,
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  apple: {width: 20, height: 20, marginHorizontal: 5},
+  detailWrap: {
+    borderWidth: 0.5,
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 5,
+    borderColor: '#495052',
+    width: 300,
+    backgroundColor: '#fff',
+  },
+  playerWrap: {alignItems: 'center', justifyContent: 'center'},
 });
