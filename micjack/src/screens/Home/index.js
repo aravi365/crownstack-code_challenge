@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, FlatList, View} from 'react-native';
+import {StyleSheet, FlatList, View, SafeAreaView} from 'react-native';
 import {useQuery} from 'react-query';
 import {getSongs} from '../../helpers/getSongs';
 import ListElement from './ListElement';
@@ -19,18 +19,23 @@ export default function Home() {
   console.log('data check', data);
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={item => item.artistId}
-        renderItem={({item, index}) => <ListElement data={item} />}
-        data={data}
-      />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <FlatList
+          keyExtractor={item => item.artistId}
+          renderItem={({item, index}) => <ListElement data={item} />}
+          data={data}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
+
+  safeArea: {flex: 1, backgroundColor: '#fff'},
 });
