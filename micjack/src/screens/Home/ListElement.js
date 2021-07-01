@@ -38,18 +38,11 @@ export default function ListElement(props) {
             <Text style={{lineHeight: 20}} numberOfLines={1}>
               {props.data.primaryGenreName}
             </Text>
-            <Text
-              style={[
-                styles.explicitness,
-                {
-                  color:
-                    props.data.trackExplicitness === 'explicit'
-                      ? 'red'
-                      : 'green',
-                },
-              ]}>
-              [{props.data.trackExplicitness === 'notExplicit' ? 'NE' : 'E'}]
-            </Text>
+            {props.data?.trackExplicitness === 'explicit' ? (
+              <View style={styles.explicitWrapper}>
+                <Text style={styles.explicText}>E</Text>
+              </View>
+            ) : null}
             {props.data.trackTimeMillis ? (
               <Text style={styles.duration}>
                 {millisToMinutes(props.data.trackTimeMillis)}
@@ -109,4 +102,14 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: 'rgb(0,190,200)',
   },
+  explicitWrapper: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#495052',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 8,
+  },
+  explicText: {fontSize: 11, color: '#fff'},
 });
