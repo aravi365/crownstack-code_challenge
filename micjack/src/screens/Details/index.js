@@ -17,20 +17,11 @@ import {formatDate} from '../../helpers/formatDate';
 import {images} from '../../../assets';
 export default function Details({navigation, route}) {
   const [isPlaying, setPlaying] = React.useState(false);
-  const [isPaused, setPaused] = React.useState(false);
-  const [isFinished, setFinished] = React.useState(false);
 
   const {data} = route.params;
   function loadPreview() {
     try {
       SoundPlayer.loadUrl(data.previewUrl);
-    } catch (e) {
-      console.log('cannot play the sound file', e);
-    }
-  }
-  function playPreview() {
-    try {
-      SoundPlayer.play();
     } catch (e) {
       Alert.alert(
         'Unable to load preview',
@@ -43,7 +34,14 @@ export default function Details({navigation, route}) {
           },
         ],
       );
-      console.log('cannot play the sound file', e);
+      //   console.log('cannot play the sound file', e);
+    }
+  }
+  function playPreview() {
+    try {
+      SoundPlayer.play();
+    } catch (e) {
+      //   console.log('cannot play the sound file', e);
     }
     setPlaying(true);
   }
@@ -56,38 +54,28 @@ export default function Details({navigation, route}) {
     const _onFinishedPlayingSubscription = SoundPlayer.addEventListener(
       'FinishedPlaying',
       ({success}) => {
-        console.log('finished playing', success);
+        // console.log('finished playing', success);
         setPlaying(false);
-        // setFinished(true);
-        // setPaused(false);
-        // if (isPlaying) {
-        //   SoundPlayer.seek(0);
-        //   setPlaying(false);
-        //   setFinished(true);
-        //   setPaused(false);
-        // }
-        // SoundPlayer.stop();
-
         SoundPlayer.seek(0);
       },
     );
     const _onFinishedLoadingSubscription = SoundPlayer.addEventListener(
       'FinishedLoading',
       ({success}) => {
-        console.log('finished loading', success);
+        // console.log('finished loading', success);
         // setPlaying(true);
       },
     );
     const _onFinishedLoadingFileSubscription = SoundPlayer.addEventListener(
       'FinishedLoadingFile',
       ({success, name, type}) => {
-        console.log('finished loading file', success, name, type);
+        // console.log('finished loading file', success, name, type);
       },
     );
     const _onFinishedLoadingURLSubscription = SoundPlayer.addEventListener(
       'FinishedLoadingURL',
       ({success, url}) => {
-        console.log('finished loading url', success, url);
+        // console.log('finished loading url', success, url);
       },
     );
     loadPreview();
